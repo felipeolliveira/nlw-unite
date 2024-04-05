@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# Create the database
+sqlite3 $(dirname $0)/../storage.sqlite <$(dirname $0)/schema.sql

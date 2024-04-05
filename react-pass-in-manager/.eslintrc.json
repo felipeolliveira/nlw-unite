@@ -1,0 +1,33 @@
+{
+  "extends": [
+    "@rocketseat/eslint-config/react"
+  ],
+  "plugins": [
+    "unused-imports",
+    "simple-import-sort"
+  ],
+  "rules": {
+    "no-unused-vars": "off",
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
+    "react/jsx-sort-props": "error",
+    "unused-imports/no-unused-imports": "error",
+    "unused-imports/no-unused-vars": [
+      "warn",
+      {
+        "vars": "all",
+        "varsIgnorePattern": "^_",
+        "args": "after-used",
+        "argsIgnorePattern": "^_"
+      }
+    ],
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_",
+        "caughtErrorsIgnorePattern": "^_"
+      }
+    ]
+  }
+}
