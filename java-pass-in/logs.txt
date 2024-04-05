@@ -43,3 +43,6 @@
 2024-04-04T22:48:06.196-03:00  INFO 241631 --- [pass-in] [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
 2024-04-04T22:48:06.196-03:00  INFO 241631 --- [pass-in] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2024-04-04T22:48:06.197-03:00  INFO 241631 --- [pass-in] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-04-04T23:13:16.120-03:00  INFO 241631 --- [pass-in] [ionShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-04-04T23:13:16.122-03:00  INFO 241631 --- [pass-in] [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-04-04T23:13:16.251-03:00  INFO 241631 --- [pass-in] [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
