@@ -86,5 +86,19 @@ public class AttendeeService {
     private Attendee _getAttendeeById(String attendeeId) {
         return this.attendeeRepository.findById(attendeeId).orElseThrow(() -> new AttendeeNotFoundException("Attendee not found"));
     }
+
+    private Attendee _getAttendeeByTicketCode(String ticketCode) {
+        return this.attendeeRepository.findByTicketCode(ticketCode).orElseThrow(() -> new AttendeeNotFoundException("Attendee not found"));
+    }
+
+    public AttendeeBadgeResponseDTO getAttendeeBadgeByTicketCode(String ticketCode, UriComponentsBuilder uriBuilder) {
+        Attendee attendee = this._getAttendeeByTicketCode(ticketCode.toUpperCase());
+
+        var uri = uriBuilder.path("/attendees/{attendeeId}/check-in").buildAndExpand(attendee.getId()).toUri().toString();
+
+        AttendeeBadgetDTO badge = new AttendeeBadgetDTO(attendee.getName(), attendee.getEmail(), attendee.getTicketCode(), uri, attendee.getEvent().getId());
+
+        return new AttendeeBadgeResponseDTO(badge);
+    }
 }
 

@@ -21,6 +21,13 @@ public class AttendeeController {
         return ResponseEntity.ok(response);
     }
 
+    @GetMapping("/ticket/{ticketCode}/badge")
+    public ResponseEntity<AttendeeBadgeResponseDTO> getAttendeeBadgeByTicketCode(@PathVariable String ticketCode, UriComponentsBuilder uriBuilder) {
+        AttendeeBadgeResponseDTO response = this.attendeeService.getAttendeeBadgeByTicketCode(ticketCode, uriBuilder);
+
+        return ResponseEntity.ok(response);
+    }
+
     @PostMapping("/{attendeeId}/check-in")
     public ResponseEntity<Object> registerCheckIn(@PathVariable String attendeeId, UriComponentsBuilder uriBuilder) {
         this.attendeeService.checkinAttendee(attendeeId);

@@ -12,11 +12,6 @@ type EventLogoProps = {
 }
 
 export function EventLogo({ imageUrl, title, className }: EventLogoProps) {
-  // const eventLogoBySlug = {
-  //   'unite': () => require('@/assets/logo.png'),
-  //   'evento-react': () => require('@/assets/logo.png'),
-  // } as Record<string, any>
-
   if (!imageUrl) {
     return (
       <View className={cn(

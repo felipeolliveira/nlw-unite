@@ -18,6 +18,7 @@ import { colors } from '@/styles/colors';
 import { Header } from '@/components/header';
 import { EventLogo } from '@/components/event-logo';
 import { AxiosError } from 'axios';
+import { router } from 'expo-router';
 
 const credentialFormSchema = z.object({
   name: z.string({
@@ -43,7 +44,7 @@ export default function Register() {
     resolver: zodResolver(credentialFormSchema)
   })
 
-  const { data: events, isLoading } = useQuery<PaginationModel<EventModel>>({
+  const { data: events, isLoading, refetch } = useQuery<PaginationModel<EventModel>>({
     queryKey: ['events'],
     queryFn: async () => {
       const { data } = await api.get('/events')
@@ -59,7 +60,9 @@ export default function Register() {
         email
       })
 
-      Alert.alert('Inscrição', 'Inscrição realizada com sucesso!')
+      Alert.alert('Inscrição', 'Inscrição realizada com sucesso!', [
+        { text: 'Ok', onPress: () => router.replace('/ticket') }
+      ])
     } catch (error) {
       if (error instanceof AxiosError) {
         if (error.response?.status === 409) {
@@ -80,14 +83,24 @@ export default function Register() {
     )
   }
 
-  return (
+  if (!events) {
+    return (
+      <Container className="justify-center items-center gap-6">
+        <Text className='text-2xl'>Nenhum evento encontrado</Text>
+        <Button title="Tentar novamente" isLoading={isLoading} onPress={() => refetch()} />
+        <Link href="/" className='text-gray-100 text-base font-bold text-center mt-8'>
+          Já possui ingresso? Voltar!
+        </Link>
+      </Container>
+    )
+  }
 
+  return (
     <Controller
       control={control}
       name='event'
-      render={({ field: { onChange, value }, formState: { errors } }) => {
-
-        if (!value?.id && events) {
+      render={({ field: { onChange, value } }) => {
+        if (!value && events) {
           return (
             <Container className="p-0">
               <StatusBar style="light" />
@@ -131,7 +144,8 @@ export default function Register() {
           <Container className="justify-center items-center">
             <StatusBar style="light" />
 
-            <EventLogo imageUrl={value.imageUrl} title={value.title} className='size-32' />
+            <EventLogo imageUrl={value?.imageUrl} title={value.title} className='size-32' />
+            {value.imageUrl && <Text className='text-orange-500 text-2xl text-center mt-4'>{value.title}</Text>}
 
             <View className='w-full mt-12 gap-3'>
               <Controller
