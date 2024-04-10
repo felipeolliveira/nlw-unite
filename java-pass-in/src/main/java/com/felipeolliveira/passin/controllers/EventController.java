@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
@@ -66,5 +67,10 @@ public class EventController {
         AttendeeIdDTO attendeeIdDTO = this.eventService.registerAttendeeOnEvent(eventId, body);
         URI uri = uriComponentsBuilder.path("/attendees/{attendeeId}/badge").buildAndExpand(attendeeIdDTO.attendeeId()).toUri();
         return ResponseEntity.created(uri).body(attendeeIdDTO);
+    }
+    @PostMapping("/{eventId}/image")
+    public ResponseEntity<Object> uploadEventImage(@PathVariable String eventId, @RequestParam MultipartFile file) {
+        this.eventService.uploadEventImageToLocal(eventId, file);
+        return ResponseEntity.ok().build();
     }
 }

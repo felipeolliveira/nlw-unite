@@ -6,6 +6,8 @@ public record AttendeeDetailsDTO(
         String id,
         String name,
         String email,
+
+        String ticketCode,
         String createdAt,
         String checkedInAt
 ) {}

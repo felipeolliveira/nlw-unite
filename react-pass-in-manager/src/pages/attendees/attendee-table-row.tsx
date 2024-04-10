@@ -16,7 +16,7 @@ export function AttendeeTableRow({ attendee }: AttendeeTableRowProps) {
       <TableCell>
         <Checkbox className="border-muted-foreground" />
       </TableCell>
-      <TableCell>{attendee.id.split('-')[0]}</TableCell>
+      <TableCell>{attendee.ticketCode}</TableCell>
       <TableCell>
         <div className="flex flex-col gap-1">
           <span className="font-semibold text-foreground">{attendee.name}</span>

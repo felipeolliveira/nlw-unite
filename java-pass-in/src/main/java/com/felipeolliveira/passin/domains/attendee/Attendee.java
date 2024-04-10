@@ -20,6 +20,9 @@ public class Attendee {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
+    @Column(nullable = false, unique = true, name = "ticket_code")
+    private String ticketCode;
+
     @Column(nullable = false)
     private String name;
 

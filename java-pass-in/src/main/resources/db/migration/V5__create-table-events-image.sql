@@ -1,13 +1,13 @@
-CREATE TABLE attendees (
+CREATE TABLE events_image (
     id VARCHAR(255) NOT NULL PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL,
-    ticket_code VARCHAR(8) NOT NULL,
     event_id VARCHAR(255) NOT NULL,
+    image_url VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
-    CONSTRAINT attendees_event_id_fk
+    CONSTRAINT events_images_id_fk
         FOREIGN KEY (event_id) REFERENCES events (id)
-        ON DELETE RESTRICT
+        ON DELETE CASCADE
         ON UPDATE CASCADE
 );
+
+CREATE UNIQUE INDEX event_image_idx ON events_image (event_id);

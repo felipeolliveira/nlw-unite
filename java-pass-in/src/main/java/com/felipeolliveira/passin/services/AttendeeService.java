@@ -48,6 +48,7 @@ public class AttendeeService {
                     attendee.getId(),
                     attendee.getName(),
                     attendee.getEmail(),
+                    attendee.getTicketCode(),
                     attendee.getCreatedAt().format(DateTimeFormatter.ISO_DATE_TIME),
                     checkedInAt == null ? null : checkedInAt.format(DateTimeFormatter.ISO_DATE_TIME)
             );
@@ -72,7 +73,7 @@ public class AttendeeService {
 
         var uri = uriComponentsBuilder.path("/attendees/{attendeeId}/check-in").buildAndExpand(attendeeId).toUri().toString();
 
-        AttendeeBadgetDTO badge = new AttendeeBadgetDTO(attendee.getName(), attendee.getEmail(), uri, attendee.getEvent().getId());
+        AttendeeBadgetDTO badge = new AttendeeBadgetDTO(attendee.getName(), attendee.getEmail(), attendee.getTicketCode(), uri, attendee.getEvent().getId());
 
         return new AttendeeBadgeResponseDTO(badge);
     }

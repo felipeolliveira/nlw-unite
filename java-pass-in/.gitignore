@@ -33,3 +33,5 @@ build/
 .vscode/
 **/database/*
 logs*
+
+events_images/

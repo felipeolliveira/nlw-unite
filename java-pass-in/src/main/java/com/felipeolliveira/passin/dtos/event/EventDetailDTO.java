@@ -5,6 +5,8 @@ public record EventDetailDTO(
         String title,
         String details,
         String slug,
+
+        String imageUrl,
         Integer maximumAttendees,
         Integer attendeesAmount
 ){}
