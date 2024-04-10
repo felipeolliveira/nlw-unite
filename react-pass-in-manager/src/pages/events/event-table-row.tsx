@@ -5,6 +5,8 @@ import { TableCell, TableRow } from '@/components/ui/table'
 import { cn } from '@/lib/utils'
 import { EventModel } from '@/models/event-model'
 
+import { EventLogo } from './event-logo'
+
 type EventTableRowProps = {
   event: EventModel
   disabled?: boolean
@@ -30,6 +32,9 @@ export function EventTableRow({
       ])}
       onClick={handleClickRow}
     >
+      <TableCell>
+        <EventLogo imageUrl={event.imageUrl} title={event.title} />
+      </TableCell>
       <TableCell>{event.slug}</TableCell>
       <TableCell>
         <div className="flex flex-col gap-1">

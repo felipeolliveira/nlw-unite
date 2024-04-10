@@ -3,6 +3,7 @@ export interface EventModel {
   title: string
   details: string
   slug: string
+  imageUrl: string | null
   maximumAttendees: number
   attendeesAmount: number
 }
